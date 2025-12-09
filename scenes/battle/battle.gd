@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @export var char_stats : CharacterStats
 @export var music: AudioStream
 
@@ -21,6 +20,8 @@ func _ready() -> void:
 	enemy_handler.child_order_changed.connect(_on_enemies_child_order_changed)
 	Events.player_died.connect(_on_player_died)
 	start_battle(new_stats)
+	battle_ui.initialize_card_pile_ui()
+
 
 func start_battle(stats: CharacterStats) -> void:
 	get_tree().paused = false
@@ -28,13 +29,16 @@ func start_battle(stats: CharacterStats) -> void:
 	enemy_handler.reset_enemy_actions()
 	player_handler.start_battle(stats)
 
+
 func _on_enemy_turn_ended() -> void:
 	player_handler.start_turn()
 	enemy_handler.reset_enemy_actions()
 
+
 func _on_enemies_child_order_changed() -> void:
 	if enemy_handler.get_child_count() == 0:
 		Events.battle_over_screen_requested.emit("Victorious!", BattleOverPanel.Type.WIN)
+
 
 func _on_player_died() -> void:
 	Events.battle_over_screen_requested.emit("Game Over!", BattleOverPanel.Type.LOSE)

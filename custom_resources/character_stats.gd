@@ -1,12 +1,19 @@
 class_name CharacterStats
 extends Stats
 
+@export_group("Visuals")
+@export var character_name: String
+@export_multiline var descrption: String
+@export var portrait: Texture
+
+@export_group("Gameplay Data")
 @export var starting_deck: CardPile
+@export var draftable_cards: CardPile
 @export var cards_per_turn: int
 @export var max_mana: int		# 最大法力
 
 var mana: int: set = _set_mana
-var deck: CardPile				# 当前持有
+var deck: CardPile				# 当前拥有
 var discard: CardPile			# 弃牌堆
 var draw_pile: CardPile			# 抽牌堆
 

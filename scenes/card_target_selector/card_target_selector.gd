@@ -15,7 +15,7 @@ func _ready() -> void:
 	area_2d.area_entered.connect(_on_area_2d_area_entered)
 	area_2d.area_exited.connect(_on_area_2d_area_existed)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not targeting:
 		return
 	area_2d.position = get_local_mouse_position()
@@ -49,7 +49,7 @@ func _on_card_aim_started(card: CardUI) -> void:
 	area_2d.monitorable = true
 	current_card = card
 
-func _on_card_aim_ended(card: CardUI) -> void:
+func _on_card_aim_ended(_card: CardUI) -> void:
 	targeting = false
 	card_arc.clear_points()
 	area_2d.position = Vector2.ZERO

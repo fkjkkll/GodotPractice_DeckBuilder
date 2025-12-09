@@ -7,8 +7,9 @@
 [resource]
 script = ExtResource("2_eofgd")
 id = "warrior_slash"
+rarity = 1
 target = 2
-cost = 2
+cost = 1
 icon = ExtResource("1_x22fl")
 tooltip_text = "[center]Deal [color=\"ff0000\"]4[/color] damage to all enemies.[/center]"
 sound = ExtResource("3_eofgd")

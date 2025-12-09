@@ -10,9 +10,7 @@ const CARD_HOVER_STYLEBOX_TRES := preload("uid://c4bchoun14nm5")
 @export var card: Card: set = _set_card
 @export var char_stats : CharacterStats : set = _set_char_stats
 
-@onready var panel: Panel = $Panel
-@onready var cost: Label = $Cost
-@onready var icon: TextureRect = $Icon
+@onready var card_visuals: CardVisuals = $CardVisuals
 @onready var drop_point_detector: Area2D = $DropPointDetector
 @onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine
 @onready var targets: Array[Node] = []		# 卡牌当前接触到的合法碰撞体
@@ -73,17 +71,16 @@ func _set_card(value: Card) -> void:
 	if not is_node_ready():
 		await ready
 	card = value
-	cost.text = str(card.cost)
-	icon.texture = card.icon
+	card_visuals.card = card
 
 func _set_playable(value: bool) -> void:
 	playable = value
 	if not playable:
-		cost.add_theme_color_override("font_color", Color.RED)
-		icon.modulate = Color(1.0, 1.0, 1.0, 0.5)
+		card_visuals.cost.add_theme_color_override("font_color", Color.RED)
+		card_visuals.icon.modulate = Color(1.0, 1.0, 1.0, 0.5)
 	else:
-		cost.remove_theme_color_override("font_color")
-		icon.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		card_visuals.cost.remove_theme_color_override("font_color")
+		card_visuals.icon.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 func _set_char_stats(value: CharacterStats) -> void:
 	char_stats = value
