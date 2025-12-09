@@ -12,7 +12,7 @@ enum Type
 @export var type: Type
 @export_range(0.0, 10.0) var chance_weight := 1.0
 
-@onready var accumulated_weight := 0
+@onready var accumulated_weight := 0.0
 
 var enemy: Enemy
 var target: Node2D
