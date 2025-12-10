@@ -2,11 +2,12 @@ class_name DamageEffect
 extends Effect
 
 var amount := 0
+var receive_modifier_type := Modifier.Type.DMG_TAKEN
 
 func execute(_targets: Array[Node]) -> void:
 	for target in _targets:
 		if not target:
 			continue
 		if target is Enemy or target is Player:
-			target.take_damage(amount)
+			target.take_damage(amount, receive_modifier_type)
 			SFXPlayer.play(sound)
