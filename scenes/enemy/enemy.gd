@@ -9,13 +9,17 @@ const WHITE_SPRITE_MATERIAL = preload("uid://d30aqi80c1nrc")
 @onready var arrow: Sprite2D = $Arrow
 @onready var stats_ui: StatsUI = $StatsUI
 @onready var intent_ui: IntentUI = $IntentUI
+@onready var status_handler: StatusHandler = $StatusHandler
+
 
 var enemy_action_picker: EnemyActionPicker					# AI's brain
 var current_action: EnemyAction: set = _set_current_action
 
+
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_existed)
+
 
 func _set_enemy_stats(value: EnemyStats) -> void:
 	stats = value.create_instance()
@@ -24,10 +28,12 @@ func _set_enemy_stats(value: EnemyStats) -> void:
 		stats.stats_changed.connect(update_action)
 	update_enemy()
 
+
 func _set_current_action(value: EnemyAction) -> void:
 	current_action = value
 	if current_action:
 		intent_ui.update_intent(current_action.intent)
+
 
 func setup_ai() -> void:
 	if enemy_action_picker:
@@ -36,6 +42,7 @@ func setup_ai() -> void:
 	add_child(new_action_picker)
 	enemy_action_picker = new_action_picker
 	enemy_action_picker.enemy = self
+
 
 func update_action() -> void:
 	if not enemy_action_picker:
@@ -46,6 +53,7 @@ func update_action() -> void:
 	var new_conditional_action := enemy_action_picker.get_first_conditional_action()
 	if new_conditional_action and current_action != new_conditional_action:
 		current_action = new_conditional_action
+
 
 func update_enemy() -> void:
 	if not stats is Stats:
@@ -58,14 +66,17 @@ func update_enemy() -> void:
 	setup_ai()
 	update_stats()
 
+
 func update_stats() -> void:
 	stats_ui.update_stats(stats)
+
 
 func do_turn() -> void:
 	stats.block = 0
 	if not current_action:
 		return
 	current_action.perform_action()
+
 
 func take_damage(damage: int) -> void:
 	if stats.health <= 0:
@@ -80,11 +91,27 @@ func take_damage(damage: int) -> void:
 	tween.finished.connect(func():
 		sprite_2d.material = null
 		if stats.health <= 0:
+			Events.enemy_died.emit(self)
 			queue_free()
 	)
+
 
 func _on_area_entered(_area: Area2D) -> void:
 	arrow.show()
 
+
 func _on_area_existed(_area: Area2D) -> void:
 	arrow.hide()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

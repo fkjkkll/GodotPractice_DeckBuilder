@@ -5,6 +5,8 @@ const WHITE_SPRITE_MATERIAL = preload("uid://d30aqi80c1nrc")
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var stats_ui: StatsUI = $StatsUI
+@onready var status_handler: StatusHandler = $StatusHandler
+
 
 func _set_character_stats(value: CharacterStats) -> void:
 	stats = value
@@ -14,6 +16,7 @@ func _set_character_stats(value: CharacterStats) -> void:
 	
 	update_player()
 
+
 func update_player() -> void:
 	if not stats is CharacterStats:
 		return
@@ -22,8 +25,10 @@ func update_player() -> void:
 	sprite_2d.texture = stats.art
 	update_stats()
 
+
 func update_stats() -> void:
 	stats_ui.update_stats(stats)
+
 
 func take_damage(damage: int) -> void:
 	if stats.health <= 0:

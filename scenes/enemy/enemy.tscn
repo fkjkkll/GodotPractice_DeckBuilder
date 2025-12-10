@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://26nditb7ygmp"]
+[gd_scene load_steps=8 format=3 uid="uid://26nditb7ygmp"]
 
 [ext_resource type="Texture2D" uid="uid://1u3b3hwqd8yh" path="res://art/tile_0110.png" id="1_4a83h"]
 [ext_resource type="Script" uid="uid://csprswye33cp3" path="res://scenes/enemy/enemy.gd" id="1_tjssy"]
 [ext_resource type="Texture2D" uid="uid://bb3rcs5nqntir" path="res://art/arrow.png" id="2_40wdo"]
 [ext_resource type="PackedScene" uid="uid://bft2ekcfh33d4" path="res://scenes/ui/stats_ui.tscn" id="3_tjssy"]
 [ext_resource type="PackedScene" uid="uid://dyfnguqe5kr5" path="res://scenes/ui/intent_ui.tscn" id="5_gl05p"]
+[ext_resource type="PackedScene" uid="uid://dfxvnr8q7qhqx" path="res://scenes/status_handler/status_handler.tscn" id="6_cwlon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agsc7"]
 
@@ -31,3 +32,10 @@ offset_bottom = 24.0
 [node name="IntentUI" parent="." instance=ExtResource("5_gl05p")]
 offset_top = -29.0
 offset_bottom = -6.0
+
+[node name="StatusHandler" parent="." node_paths=PackedStringArray("status_owner") instance=ExtResource("6_cwlon")]
+offset_left = -26.0
+offset_top = 25.0
+offset_right = -26.0
+offset_bottom = 25.0
+status_owner = NodePath("..")
