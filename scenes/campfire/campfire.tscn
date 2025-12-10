@@ -1,6 +1,129 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnraxr0mmguay"]
+[gd_scene load_steps=15 format=3 uid="uid://cnraxr0mmguay"]
 
 [ext_resource type="Script" uid="uid://c2aeuda5yghpu" path="res://scenes/campfire/campfire.gd" id="1_mfytg"]
+[ext_resource type="Resource" uid="uid://dpxucvrcbytf" path="res://characters/wizard/wizard.tres" id="2_5yci7"]
+[ext_resource type="Texture2D" uid="uid://djbldcvfo4swr" path="res://art/line.png" id="2_56ahn"]
+
+[sub_resource type="Gradient" id="Gradient_mfytg"]
+offsets = PackedFloat32Array(0, 0.9980806)
+colors = PackedColorArray(0, 0, 0, 1, 0.25882354, 0.14509805, 0.13333334, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_56ahn"]
+gradient = SubResource("Gradient_mfytg")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[sub_resource type="Gradient" id="Gradient_5yci7"]
+offsets = PackedFloat32Array(0.002096436, 0.2327044, 0.5136268, 0.7379455, 0.9287212)
+colors = PackedColorArray(0.9843137, 1, 0, 1, 1, 0.61960787, 0.25882354, 1, 0.8980392, 0.23137255, 0, 1, 0.39607844, 0.08235294, 0, 1, 0.39607844, 0.08235294, 0, 0.3529412)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vcaur"]
+gradient = SubResource("Gradient_5yci7")
+
+[sub_resource type="Curve" id="Curve_civeq"]
+_data = [Vector2(0, 0.28152817), 0.0, 0.0, 0, 0, Vector2(0.23061633, 1), 0.0, 0.0, 0, 0, Vector2(0.7455269, 1), 0.0, 0.0, 0, 0, Vector2(0.99602395, 0.32010388), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_6jn8c"]
+curve = SubResource("Curve_civeq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_auago"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 22.8
+angle_min = 60.00001
+angle_max = 120.000015
+direction = Vector3(0, -1, 0)
+spread = 10.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 14.999997
+linear_accel_max = 24.999998
+damping_min = 20.0
+damping_max = 50.000004
+scale_curve = SubResource("CurveTexture_6jn8c")
+color_ramp = SubResource("GradientTexture1D_vcaur")
+
+[sub_resource type="LabelSettings" id="LabelSettings_mfytg"]
+font_size = 12
+
+[sub_resource type="Animation" id="Animation_56ahn"]
+resource_name = "fade_out"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParticleLayer/GPUParticles2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UILayer/UI:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_fade_out_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_5yci7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParticleLayer/GPUParticles2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UILayer/UI:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vcaur"]
+_data = {
+&"RESET": SubResource("Animation_5yci7"),
+&"fade_out": SubResource("Animation_56ahn")
+}
 
 [node name="CampFire" type="Control"]
 layout_mode = 3
@@ -11,40 +134,69 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_mfytg")
+char_stats = ExtResource("2_5yci7")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
+[node name="Background" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Background" type="TextureRect" parent="Background"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0.39215687)
+texture = SubResource("GradientTexture2D_56ahn")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
+[node name="ParticleLayer" type="CanvasLayer" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleLayer"]
+position = Vector2(96, 98)
+amount = 128
+texture = ExtResource("2_56ahn")
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_auago")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="VBoxContainer" parent="UILayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = 29.0
+offset_top = -24.5
+offset_right = 93.0
+offset_bottom = 24.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="UILayer/UI"]
 layout_mode = 2
 text = "Campfire"
+label_settings = SubResource("LabelSettings_mfytg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 13)
+[node name="Spacer" type="Control" parent="UILayer/UI"]
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
-text = "Go Back"
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="RestButton" type="Button" parent="UILayer/UI"]
+custom_minimum_size = Vector2(40, 14)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Rest"
+
+[node name="Label" type="Label" parent="UILayer/UI"]
+layout_mode = 2
+text = "+30% HP"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vcaur")
+}
+
+[connection signal="pressed" from="UILayer/UI/RestButton" to="." method="_on_rest_button_pressed"]

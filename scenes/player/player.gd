@@ -1,12 +1,12 @@
 class_name Player extends Node2D
 
-@export var stats : CharacterStats : set = set_character_stats
+@export var stats : CharacterStats : set = _set_character_stats
 const WHITE_SPRITE_MATERIAL = preload("uid://d30aqi80c1nrc")
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var stats_ui: StatsUI = $StatsUI
 
-func set_character_stats(value: CharacterStats) -> void:
+func _set_character_stats(value: CharacterStats) -> void:
 	stats = value
 	# 方便独立测试场景
 	if not stats.stats_changed.is_connected(update_stats):

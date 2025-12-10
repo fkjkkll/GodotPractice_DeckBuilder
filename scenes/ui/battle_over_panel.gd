@@ -1,5 +1,4 @@
-class_name BattleOverPanel
-extends Panel
+class_name BattleOverPanel extends Panel
 
 enum Type{WIN, LOSE}
 

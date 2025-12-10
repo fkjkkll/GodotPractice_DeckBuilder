@@ -1,5 +1,4 @@
-class_name CharacterStats
-extends Stats
+class_name CharacterStats extends Stats
 
 @export_group("Visuals")
 @export var character_name: String
@@ -22,7 +21,7 @@ func _set_mana(value: int) -> void:
 	stats_changed.emit()
 
 func reset_mana() -> void:
-	self.mana = max_mana
+	mana = max_mana
 
 func take_damage(damage: int) -> void:
 	var initial_health := health

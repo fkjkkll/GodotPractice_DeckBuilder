@@ -4,16 +4,31 @@ extends Node2D
 func _ready() -> void:
 	Events.enemy_action_completed.connect(_on_enemy_action_completed)
 
+
+func setup_enemies(battle_stats: BattleStats) -> void:
+	if not battle_stats:
+		return
+	for enemy: Enemy in get_children():
+		enemy.queue_free()
+	var all_new_enemies := battle_stats.enemies.instantiate()
+	for new_enemy: Node2D in all_new_enemies.get_children():
+		var new_enemy_child := new_enemy.duplicate() as Enemy
+		add_child(new_enemy_child)
+	all_new_enemies.queue_free()
+
+
 func reset_enemy_actions() -> void:
 	for enemy: Enemy in get_children():
 		enemy.current_action = null
 		enemy.update_action()
+
 
 func start_turn() -> void:
 	if get_child_count() == 0:
 		return
 	var first_enemy: Enemy = get_child(0) as Enemy
 	first_enemy.do_turn()
+
 
 # 监听上一个敌人行动结束，触发下一个敌人行动开始
 func _on_enemy_action_completed(enemy: Enemy) -> void:
