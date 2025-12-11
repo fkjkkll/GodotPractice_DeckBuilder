@@ -10,6 +10,6 @@ id = "warrior_axe_attack"
 target = 1
 cost = 1
 icon = ExtResource("1_ungqh")
-tooltip_text = "[center]Deal [color=\"ff0000\"]6[/color] damage.[/center]"
+tooltip_text = "[center]Deal [color=\"ff0000\"]%s[/color] damage.[/center]"
 sound = ExtResource("3_6uoki")
 metadata/_custom_type_script = "uid://cruoiwfhg22l3"

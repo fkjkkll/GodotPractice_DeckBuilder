@@ -12,6 +12,6 @@ target = 1
 cost = 1
 exhausts = true
 icon = ExtResource("1_odk1c")
-tooltip_text = "[center]Deal [color=\"ff0000\"]4[/color] damage and apply 2 [color=\"ffdf00\"]Exposed[/color].[/center]"
+tooltip_text = "[center]Deal [color=\"ff0000\"]%s[/color] damage and apply 2 [color=\"ffdf00\"]Exposed[/color].[/center]"
 sound = ExtResource("3_0qbpi")
 metadata/_custom_type_script = "uid://cruoiwfhg22l3"

@@ -10,6 +10,7 @@ class_name CharacterStats extends Stats
 @export var draftable_cards: CardPile
 @export var cards_per_turn: int
 @export var max_mana: int		# 最大法力
+@export var starting_relic: Relic
 
 var mana: int: set = _set_mana
 var deck: CardPile				# 当前拥有

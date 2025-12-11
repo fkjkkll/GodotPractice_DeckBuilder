@@ -32,7 +32,12 @@ func _set_enemy_stats(value: EnemyStats) -> void:
 
 func _set_current_action(value: EnemyAction) -> void:
 	current_action = value
+	update_intent()
+
+
+func update_intent() -> void:
 	if current_action:
+		current_action.update_intent_text()
 		intent_ui.update_intent(current_action.intent)
 
 

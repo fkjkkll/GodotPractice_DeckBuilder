@@ -9,11 +9,13 @@ extends PanelContainer
 var tween: Tween
 var _is_visible := false
 
+
 func _ready() -> void:
 	Events.card_tooltip_requested.connect(show_tooltip)
 	Events.tooltip_hide_requested.connect(hide_tooltip)
 	modulate = Color.TRANSPARENT
 	hide()
+
 
 func show_tooltip(icon: Texture, text: String) -> void:
 	_is_visible = true
@@ -25,12 +27,14 @@ func show_tooltip(icon: Texture, text: String) -> void:
 	tween.tween_callback(show)
 	tween.tween_property(self, "modulate", Color.WHITE, fade_seconds)
 
+
 func hide_tooltip() -> void:
 	_is_visible = false
 	if tween:
 		tween.kill()
 	# 防止快速移动多个卡牌，上面提示框“闪烁”的问题：GOOD
 	get_tree().create_timer(fade_seconds, false).timeout.connect(hide_animation)
+
 
 func hide_animation() -> void:
 	if not _is_visible:

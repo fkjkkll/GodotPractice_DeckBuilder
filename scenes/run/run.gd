@@ -14,6 +14,8 @@ const TREASURE = preload("uid://0yyr2jt7i62v")
 @onready var current_view: Node = $CurrentView
 @onready var deck_button: CardPileOpener = %DeckButton
 @onready var deck_view: CardPileView = %DeckView
+@onready var relic_handler: RelicHandler = %RelicHandler
+@onready var relic_tool_tip: RelicTooltip = %RelicToolTip
 
 @onready var map_button: Button = %MapButton
 @onready var battle_button: Button = %BattleButton
@@ -83,6 +85,10 @@ func _setup_top_bar() -> void:
 	character.stats_changed.connect(health_ui.update_stats.bind(character))
 	health_ui.update_stats(character)
 	gold_ui.run_stats = stats
+	
+	relic_handler.add_relic(character.starting_relic)
+	Events.relic_tooltip_requested.connect(relic_tool_tip.show_tooltip)
+	
 	deck_button.card_pile = character.deck
 	deck_view.card_pile = character.deck
 	deck_button.pressed.connect(deck_view.show_current_view.bind("Deck"))
@@ -100,6 +106,7 @@ func _on_battle_room_entered(room: Room) -> void:
 	var battle_scene: Battle = _change_view(BATTLE) as Battle
 	battle_scene.char_stats = character
 	battle_scene.battle_stats = room.battle_stats
+	battle_scene.relics = relic_handler
 	battle_scene.start_battle()
 
 

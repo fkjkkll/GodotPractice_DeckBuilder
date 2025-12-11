@@ -10,6 +10,6 @@ id = "warrior_block"
 type = 1
 cost = 1
 icon = ExtResource("1_5nea4")
-tooltip_text = "[center]Gain [color=\"0044ff\"]6[/color] block.[/center]"
+tooltip_text = "[center]Gain [color=\"0044ff\"]%s[/color] block.[/center]"
 sound = ExtResource("3_1eir7")
 metadata/_custom_type_script = "uid://cruoiwfhg22l3"

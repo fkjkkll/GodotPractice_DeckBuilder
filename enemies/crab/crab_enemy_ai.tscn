@@ -13,17 +13,19 @@
 
 [sub_resource type="Resource" id="Resource_yihd4"]
 script = ExtResource("4_bm7hr")
-number = "7"
+base_text = "%s"
 icon = ExtResource("3_yv4lo")
 metadata/_custom_type_script = "uid://dqp7gxbd17vjp"
 
 [sub_resource type="Resource" id="Resource_34me6"]
 script = ExtResource("4_bm7hr")
+base_text = "6"
 icon = ExtResource("6_moca1")
 metadata/_custom_type_script = "uid://dqp7gxbd17vjp"
 
 [sub_resource type="Resource" id="Resource_0pw8a"]
 script = ExtResource("4_bm7hr")
+base_text = "15"
 icon = ExtResource("8_trgox")
 metadata/_custom_type_script = "uid://dqp7gxbd17vjp"
 
@@ -35,14 +37,12 @@ script = ExtResource("2_as7cy")
 intent = SubResource("Resource_yihd4")
 sound = ExtResource("5_moca1")
 type = 1
-chance_weight = 1
 
 [node name="BlockAction" type="Node" parent="."]
 script = ExtResource("3_fqf88")
 intent = SubResource("Resource_34me6")
 sound = ExtResource("8_yihd4")
 type = 1
-chance_weight = 1
 
 [node name="MegaBlockAction" type="Node" parent="."]
 script = ExtResource("4_nw8nb")

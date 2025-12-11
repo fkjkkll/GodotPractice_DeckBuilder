@@ -11,6 +11,7 @@ const RARITY_COLORS := {
 	Card.Rarity.RARE: Color.GOLD,
 }
 
+
 @export_group("Card Attributes")
 @export var id: String
 @export var type: Type
@@ -24,8 +25,10 @@ const RARITY_COLORS := {
 @export_multiline var tooltip_text: String
 @export var sound: AudioStream
 
+
 func is_single_targeted() -> bool:
 	return target == Target.SINGLE_ENEMY
+
 
 func _get_targets(targets: Array[Node]) -> Array[Node]:
 	if not targets:
@@ -41,6 +44,7 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 		_:
 			return []
 
+
 func play(targets: Array[Node], char_stats: CharacterStats, modifier: ModifierHandler) -> void:
 	Events.card_played.emit(self)
 	char_stats.mana -= cost
@@ -50,5 +54,15 @@ func play(targets: Array[Node], char_stats: CharacterStats, modifier: ModifierHa
 	else:
 		apply_effects(_get_targets(targets), modifier)
 
+
 func apply_effects(_targets: Array[Node], _modifier: ModifierHandler) -> void:
 	pass
+
+
+func get_default_tooltip() -> String:
+	return tooltip_text
+
+
+func get_updated_tooltip(_player_modifiers: ModifierHandler, _enemy_modifiers: ModifierHandler) -> String:
+	return tooltip_text
+	

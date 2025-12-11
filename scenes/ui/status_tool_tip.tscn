@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc1q0qqmujqyr"]
+
+[ext_resource type="Texture2D" uid="uid://2egbj0w2asc2" path="res://art/expose.png" id="1_cc7sm"]
+[ext_resource type="Script" uid="uid://crl80ksuutjl5" path="res://scenes/ui/status_tool_tip.gd" id="1_e6hfj"]
+
+[node name="StatusToolTip" type="HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+offset_right = 150.0
+offset_bottom = 15.0
+script = ExtResource("1_e6hfj")
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+texture = ExtResource("1_cc7sm")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Exposed: take 50%% more damage for %s turns."
+vertical_alignment = 1
+autowrap_mode = 2

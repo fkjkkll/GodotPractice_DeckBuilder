@@ -5,6 +5,9 @@
 
 [resource]
 script = ExtResource("2_h8tfd")
+id = "muscle"
 stack_type = 1
+stacks = 2
 icon = ExtResource("1_h8tfd")
+tooltip = "Muscle: attacks deal %s more damage"
 metadata/_custom_type_script = "uid://ccrsvchqdljy5"

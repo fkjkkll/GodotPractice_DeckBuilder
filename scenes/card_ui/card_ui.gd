@@ -113,3 +113,15 @@ func _on_card_drag_or_aiming_ended(_usedCard: CardUI) -> void:
 
 func _on_char_stats_changed() -> void:
 	playable = char_stats.can_play_card(card)
+
+
+func get_active_enemy_modifiers() -> ModifierHandler:
+	if targets.is_empty() or targets.size() > 1 or not targets[0] is Enemy:
+		return null
+	return (targets[0] as Enemy).modifier_handler
+
+
+func request_tooltip() -> void:
+	var enemy_modifiers := get_active_enemy_modifiers()
+	var updated_tooltip := card.get_updated_tooltip(player_modifiers, enemy_modifiers)
+	Events.card_tooltip_requested.emit(card.icon, updated_tooltip)

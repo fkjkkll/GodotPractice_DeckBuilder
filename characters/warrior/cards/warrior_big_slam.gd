@@ -16,3 +16,14 @@ func apply_effects(targets: Array[Node], modifier: ModifierHandler) -> void:
 	exposed.duration = exposed_duration
 	status_effect.status = exposed
 	status_effect.execute(targets)
+
+
+func get_default_tooltip() -> String:
+	return tooltip_text % base_damage
+
+
+func get_updated_tooltip(player_modifiers: ModifierHandler, enemy_modifiers: ModifierHandler) -> String:
+	var modified_dmg := player_modifiers.get_modified_value(base_damage, Modifier.Type.DMG_DEALT)
+	if enemy_modifiers:
+		modified_dmg = enemy_modifiers.get_modified_value(modified_dmg, Modifier.Type.DMG_TAKEN)
+	return tooltip_text % modified_dmg

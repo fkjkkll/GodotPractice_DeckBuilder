@@ -20,5 +20,10 @@ var target: Node2D
 func is_performable() -> bool:
 	return false;
 
+
 func perform_action() -> void:
 	pass
+
+
+func update_intent_text() -> void:
+	intent.current_text = intent.base_text

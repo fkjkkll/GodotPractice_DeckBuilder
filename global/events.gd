@@ -24,6 +24,7 @@ signal enemy_died(enemy: Enemy)
 # Battle-related events
 signal battle_over_screen_requested(text: String, type: BattleOverPanel.Type)
 signal battle_won
+signal status_tooltip_requested(statuses: Array[Status])
 
 # Map-related events
 signal map_exited(room: Room)
@@ -39,3 +40,6 @@ signal battle_reward_exited
 
 # Treasure Room-related events
 signal treasure_room_exited
+
+# Relic-related events
+signal relic_tooltip_requested(relic: Relic)
