@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cpydvk8mq66o5" path="res://art/tile_0087.png" id="1_xju84"]
 [ext_resource type="Resource" uid="uid://i8yxbf0ghnas" path="res://characters/warrior/warrior_draftable_cards.tres" id="2_wgifn"]
 [ext_resource type="Resource" uid="uid://dvavrrflt2oyq" path="res://characters/warrior/warrior_starting_deck.tres" id="3_wgifn"]
-[ext_resource type="Resource" uid="uid://bj4q64fdv4hh3" path="res://relic/reinforced_armor.tres" id="5_6x0nb"]
+[ext_resource type="Resource" uid="uid://d26xwyf6xkv0m" path="res://relic/healing_potion.tres" id="5_6x0nb"]
 
 [resource]
 script = ExtResource("1_nliw2")

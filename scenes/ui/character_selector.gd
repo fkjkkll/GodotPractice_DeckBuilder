@@ -2,7 +2,7 @@ extends Control
 
 @export var run_startup: RunStartup
 
-const RUN = preload("uid://bbk3xah3s5r6y")
+const RUN_SCENE = preload("uid://bbk3xah3s5r6y")
 
 const WARRIOR = preload("uid://cdmqf0g2t6j1v")
 const WIZARD = preload("uid://dpxucvrcbytf")
@@ -29,7 +29,7 @@ func _on_start_button_pressed() -> void:
 	print("Start new run with %s" % current_character.character_name)
 	run_startup.type = RunStartup.Type.NEW_RUN
 	run_startup.picked_character = current_character
-	get_tree().change_scene_to_packed(RUN)
+	get_tree().change_scene_to_packed(RUN_SCENE)
 
 
 func _on_warrior_button_pressed() -> void:

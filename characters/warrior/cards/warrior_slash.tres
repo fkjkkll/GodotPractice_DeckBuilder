@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("2_eofgd")
+base_damage = 10
 id = "warrior_slash"
 rarity = 1
 target = 2

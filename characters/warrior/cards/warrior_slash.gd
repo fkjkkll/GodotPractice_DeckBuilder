@@ -1,6 +1,6 @@
 extends Card
 
-var base_damage := 4
+@export var base_damage := 40
 
 func apply_effects(targets: Array[Node], modifier: ModifierHandler) -> void:
 	var damage_effect := DamageEffect.new()

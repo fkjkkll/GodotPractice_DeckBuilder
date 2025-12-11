@@ -8,3 +8,5 @@ func execute(_targets: Array[Node]) -> void:
 		if target is Enemy or target is Player:
 			var status_handler = target.status_handler as StatusHandler
 			status_handler.add_status(status)
+			if sound:
+				SFXPlayer.play(sound)

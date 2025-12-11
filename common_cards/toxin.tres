@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3 uid="uid://blu5frk2j34wc"]
+
+[ext_resource type="Texture2D" uid="uid://psr6xk3k26oh" path="res://art/tile_0114.png" id="1_00gs1"]
+[ext_resource type="Script" uid="uid://cruoiwfhg22l3" path="res://custom_resources/card.gd" id="1_afwg3"]
+[ext_resource type="AudioStream" uid="uid://cnqve7dtqjghp" path="res://art/true_strength.ogg" id="3_1w8ly"]
+
+[resource]
+script = ExtResource("1_afwg3")
+id = "toxin"
+type = 1
+cost = 1
+exhausts = true
+icon = ExtResource("1_00gs1")
+tooltip_text = "[center]Slows you down[/center]."
+sound = ExtResource("3_1w8ly")
+metadata/_custom_type_script = "uid://cruoiwfhg22l3"

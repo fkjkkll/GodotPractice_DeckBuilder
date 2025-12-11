@@ -76,11 +76,13 @@ mouse_filter = 2
 
 [node name="HealthUI" parent="TopBar/BarItems" instance=ExtResource("4_wo0nw")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 show_max_hp = true
 
 [node name="GoldUI" parent="TopBar/BarItems" instance=ExtResource("4_0tt4g")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_vertical = 1
 

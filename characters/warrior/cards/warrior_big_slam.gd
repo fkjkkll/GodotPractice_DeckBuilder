@@ -2,8 +2,8 @@ extends Card
 
 const EXPOSED = preload("uid://ctr0k1i1mmf6c")
 
-var base_damage := 4
-var exposed_duration := 2
+@export var base_damage := 40
+@export var exposed_duration := 2
 
 func apply_effects(targets: Array[Node], modifier: ModifierHandler) -> void:
 	var damage_effect := DamageEffect.new()

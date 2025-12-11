@@ -3,6 +3,7 @@ extends Control
 
 @export var run_stats: RunStats
 @export var character_stats: CharacterStats
+@export var relic_handler: RelicHandler
 
 enum Type { GOLD, NEW_CARD }
 
@@ -35,18 +36,26 @@ func add_gold_reward(amount: int) -> void:
 	rewards.add_child.call_deferred(gold_reward)
 
 
-func _on_gold_reward_taken(amount: int) -> void:
-	if not run_stats:
-		return
-	run_stats.gold += amount
-
-
 func add_card_reward() -> void:
 	var card_reward := REWARD_BUTTON.instantiate() as RewardButton
 	card_reward.reward_icon = CARD_ICON
 	card_reward.reward_text = CARD_TEXT
 	card_reward.pressed.connect(_show_card_reward)
 	rewards.add_child.call_deferred(card_reward)
+
+
+func add_relic_reward(relic: Relic) -> void:
+	var relic_reward := REWARD_BUTTON.instantiate() as RewardButton
+	relic_reward.reward_icon = relic.icon
+	relic_reward.reward_text = relic.relic_name
+	relic_reward.pressed.connect(_on_relic_reward_taken.bind(relic))
+	rewards.add_child.call_deferred(relic_reward)
+
+
+func _on_gold_reward_taken(amount: int) -> void:
+	if not run_stats:
+		return
+	run_stats.gold += amount
 
 
 func _show_card_reward() -> void:
@@ -103,3 +112,9 @@ func _on_card_reward_taken(card: Card) -> void:
 
 func _on_back_button_pressed() -> void:
 	Events.battle_reward_exited.emit()
+
+
+func _on_relic_reward_taken(relic: Relic) -> void:
+	if not relic or not relic_handler:
+		return
+	relic_handler.add_relic(relic)

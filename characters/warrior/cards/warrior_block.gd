@@ -1,7 +1,6 @@
 extends Card
 
-
-var base_block := 5
+@export var base_block := 5
 
 
 func apply_effects(_targets: Array[Node], _modifier: ModifierHandler) -> void:

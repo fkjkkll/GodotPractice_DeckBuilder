@@ -8,7 +8,8 @@ func activate_relic(owner: RelicUI) -> void:
 	# 这里的解决方法是等法力值重置后，抽牌结束后再触发
 	# 算是一种取巧的方式
 	# CONNECT_ONE_SHOT保证只触发一次once
-	Events.player_hand_drawn.connect(_add_mana.bind(owner), CONNECT_ONE_SHOT)
+	if not Events.player_hand_drawn.is_connected(_add_mana.bind(owner)):
+		Events.player_hand_drawn.connect(_add_mana.bind(owner), CONNECT_ONE_SHOT)
 
 
 func _add_mana(owner: RelicUI) -> void:

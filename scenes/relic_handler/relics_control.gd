@@ -38,10 +38,7 @@ func update() -> void:
 	#if not is_instance_valid(left_button) or not is_instance_valid(right_button):
 		#return
 	# 这样也行
-	#if not is_inside_tree():
-		#return
-	# 这样也行
-	if not get_tree():
+	if not is_inside_tree():
 		return
 	
 	num_of_relics = relics.get_child_count()

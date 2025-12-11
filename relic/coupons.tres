@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Relic" load_steps=3 format=3 uid="uid://dh2480bs58rsx"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dh2480bs58rsx"]
 
-[ext_resource type="Script" uid="uid://c5op5ldrb8qaw" path="res://custom_resources/relic.gd" id="1_sn4f7"]
-[ext_resource type="Texture2D" uid="uid://c4e7ovx16yfl1" path="res://art/tile_0113.png" id="1_wbqt3"]
+[ext_resource type="Texture2D" uid="uid://cjclq485fhfjv" path="res://art/coupons.png" id="1_wbqt3"]
+[ext_resource type="Script" uid="uid://bx3n0ahdd2a3e" path="res://relic/coupons.gd" id="2_wbqt3"]
 
 [resource]
-script = ExtResource("1_sn4f7")
+script = ExtResource("2_wbqt3")
 relic_name = "Coupons"
 id = "coupons"
 type = 4

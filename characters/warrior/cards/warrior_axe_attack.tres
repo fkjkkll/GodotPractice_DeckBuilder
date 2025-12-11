@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("2_ungqh")
+base_damage = 15
 id = "warrior_axe_attack"
 target = 1
 cost = 1

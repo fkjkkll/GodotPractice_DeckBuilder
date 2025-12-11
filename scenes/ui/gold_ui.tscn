@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dhmtctwb5ymhc" path="res://art/gold.png" id="1_xf85s"]
 
 [node name="GoldUI" type="HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
 offset_right = 32.0
 offset_bottom = 8.0
 size_flags_vertical = 4

@@ -7,6 +7,7 @@ const BATTLE_REWARD = preload("uid://t82gbql1rcn1")
 const CAMPFIRE = preload("uid://cnraxr0mmguay")
 const SHOP = preload("uid://v6lw1kt1q443")
 const TREASURE = preload("uid://0yyr2jt7i62v")
+const WIN_SCREEN = preload("uid://tdhjrs5j5h33")
 
 @onready var map: Map = $Map
 @onready var health_ui: HealthUI = %HealthUI
@@ -38,6 +39,12 @@ func _ready() -> void:
 			print("TODO: load previous Run")
 
 
+# 作弊：方便测试
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("cheat"):
+		get_tree().call_group("enemies", "queue_free")
+
+
 func _start_run() -> void:
 	stats = RunStats.new()
 	_setup_event_connections()
@@ -65,13 +72,21 @@ func show_map() -> void:
 	map.unlock_next_rooms()
 
 
+func _show_regular_battle_rewards() -> void:
+	var reward_scene := _change_view(BATTLE_REWARD) as BattleReward
+	reward_scene.run_stats = stats
+	reward_scene.character_stats = character
+	reward_scene.add_gold_reward(map.last_room.battle_stats.roll_gold_reward())
+	reward_scene.add_card_reward()
+
+
 func _setup_event_connections() -> void:
-	Events.battle_won.connect(_on_battle_won)
 	Events.battle_reward_exited.connect(show_map)
 	Events.campfire_exited.connect(show_map)
 	Events.shop_exited.connect(show_map)
-	Events.treasure_room_exited.connect(show_map)
+	Events.battle_won.connect(_on_battle_won)
 	Events.map_exited.connect(_on_map_exited)
+	Events.treasure_room_exited.connect(_on_treasure_room_existed)
 	
 	map_button.pressed.connect(show_map)
 	battle_button.pressed.connect(_change_view.bind(BATTLE))
@@ -95,11 +110,11 @@ func _setup_top_bar() -> void:
 
 
 func _on_battle_won() -> void:
-	var reward_scene := _change_view(BATTLE_REWARD) as BattleReward
-	reward_scene.run_stats = stats
-	reward_scene.character_stats = character
-	reward_scene.add_gold_reward(map.last_room.battle_stats.roll_gold_reward())
-	reward_scene.add_card_reward()
+	if map.floors_climbed == MapGenerator.FLOOR:
+		var win_screen := _change_view(WIN_SCREEN) as WinScreen
+		win_screen.character = character
+	else:
+		_show_regular_battle_rewards()
 
 
 func _on_battle_room_entered(room: Room) -> void:
@@ -115,15 +130,39 @@ func _on_campfire_entered() -> void:
 	campfire.char_stats = character
 
 
+func _on_shop_entered() -> void:
+	var shop := _change_view(SHOP) as Shop
+	shop.char_stats = character
+	shop.run_stats = stats
+	shop.relic_handler = relic_handler
+	Events.shop_entered.emit(shop) # populate_shop前完成
+	shop.populate_shop()
+
+
+func _on_treasure_room_entered() -> void:
+	var treasure_scene := _change_view(TREASURE) as Treasure
+	treasure_scene.relic_handler = relic_handler
+	treasure_scene.char_stats = character
+	treasure_scene.generate_relic()
+
+
+func _on_treasure_room_existed(relic: Relic) -> void:
+	var reward_scene := _change_view(BATTLE_REWARD) as BattleReward
+	reward_scene.run_stats = stats
+	reward_scene.character_stats = character
+	reward_scene.relic_handler = relic_handler
+	reward_scene.add_relic_reward(relic)
+
+
 func _on_map_exited(room: Room) -> void:
 	match room.type:
 		Room.Type.MONSTER:
 			_on_battle_room_entered(room)
 		Room.Type.TREASURE:
-			_change_view(TREASURE)
+			_on_treasure_room_entered()
 		Room.Type.CAMPFIRE:
 			_on_campfire_entered()
 		Room.Type.SHOP:
-			_change_view(SHOP)
+			_on_shop_entered()
 		Room.Type.BOSS:
 			_on_battle_room_entered(room)
