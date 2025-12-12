@@ -34,11 +34,11 @@ func can_play_card(card: Card) -> bool:
 	return mana >= card.cost
 
 func create_instance() -> Resource:
-	var instance: CharacterStats = self.duplicate()
+	var instance: CharacterStats = self.duplicate(true)
 	instance.health = max_health
 	instance.block = 0
 	instance.reset_mana()
-	instance.deck = instance.starting_deck.duplicate()
+	instance.deck = instance.starting_deck.duplicate(true)
 	instance.draw_pile = CardPile.new()
 	instance.discard = CardPile.new()
 	return instance

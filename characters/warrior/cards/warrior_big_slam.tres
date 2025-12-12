@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://art/slash.ogg" id="3_0qbpi"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("2_jtyte")
 base_damage = 10
 id = "warrior_big_slam"

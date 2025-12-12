@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://cnqve7dtqjghp" path="res://art/true_strength.ogg" id="3_4ciyb"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("2_ehbwc")
 id = "warrior_true_strength"
 type = 2

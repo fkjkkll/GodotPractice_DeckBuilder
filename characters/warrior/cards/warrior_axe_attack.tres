@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://b1vpjjmi5cj3n" path="res://art/axe.ogg" id="3_6uoki"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("2_ungqh")
 base_damage = 15
 id = "warrior_axe_attack"

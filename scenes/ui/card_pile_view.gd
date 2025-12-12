@@ -11,7 +11,7 @@ const CARD_MENU_UI = preload("uid://bxodlqo77nnoh")
 
 func _ready() -> void:
 	back_button.pressed.connect(hide)
-	
+	Events.battle_over_screen_requested.connect(hide.unbind(2)) # 对局结束要自动消失，不然点不了paused
 	for card: Node in cards.get_children():
 		card.queue_free()
 	
@@ -39,7 +39,7 @@ func _update_view(randomized: bool) -> void:
 		return
 	var all_cards := card_pile.cards.duplicate()
 	if randomized:
-		all_cards.shuffle()
+		RNG.array_shuffle(all_cards)
 	for card: Card in all_cards:
 		var new_card := CARD_MENU_UI.instantiate() as CardMenuUI
 		cards.add_child(new_card)

@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://df64e7qat73gs" path="res://art/block.ogg" id="3_1eir7"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("2_5nea4")
 base_block = 10
 id = "warrior_block"

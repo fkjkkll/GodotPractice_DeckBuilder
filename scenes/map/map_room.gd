@@ -1,5 +1,6 @@
 class_name MapRoom extends Area2D
 
+signal clicked(room: Room)
 signal selected(room: Room)
 
 const ICONS := {
@@ -38,15 +39,20 @@ func _set_room(value: Room) -> void:
 func show_selected() -> void:
 	#line_2d.modulate = Color.WHITE
 	animation_player.play("select")
+	animation_player.advance(1)
 
-
+var _clicked: bool = false
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if not available or not event.is_action_pressed("left_mouse"):
 		return
 	room.selected = true
+	_clicked = true
+	clicked.emit(room)
 	animation_player.play("select")
 
 
 # Called by the AnimationPlayer when the "select" animation finishes
 func _on_map_room_selected() -> void:
-	selected.emit(room)
+	if _clicked:
+		_clicked = false
+		selected.emit(room)

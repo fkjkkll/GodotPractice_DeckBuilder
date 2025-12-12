@@ -18,6 +18,13 @@ func _ready() -> void:
 	Events.player_died.connect(_on_player_died)
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		var card_ui = player_handler.hand.get_child(0) as CardUI
+		card_ui.card.cost -= 1
+		card_ui.card = card_ui.card
+
+
 func start_battle() -> void:
 	get_tree().paused = false
 	MusicPlayer.play(music, true)
@@ -46,6 +53,7 @@ func _on_enemies_child_order_changed() -> void:
 
 func _on_player_died() -> void:
 	Events.battle_over_screen_requested.emit("Game Over!", BattleOverPanel.Type.LOSE)
+	SaveGame.delete_data()
 
 
 func _on_relics_activated(type: Relic.Type) -> void:
