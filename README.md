@@ -7,7 +7,7 @@ A roguelike deckbuilder practice project made in Godot 4.
 或者我不采用const RUN_SCENE = preload("uid://bbk3xah3s5r6y")预加载而是直接通过get_tree().change_scene_to_file("res://scenes/run/run.tscn")切换点击start进入run就不会有问题
 ### 解决方案
 - [Do not use preload](https://theduriel.github.io/Godot/Do-not-use---Preload)
-[reddit问题](https://www.reddit.com/r/godot/comments/1ot6h51/cant_go_back_to_a_scene_failed_to_instantiate/)
+- [reddit问题](https://www.reddit.com/r/godot/comments/1ot6h51/cant_go_back_to_a_scene_failed_to_instantiate/)
 
 ## 资源深拷贝问题
 对卡组进行duplicate(true)时，卡组内部数组内的卡牌资源并未进行深拷贝
